@@ -1,10 +1,4 @@
-/* ============================================================
-   style.css — GradeBook visual styles
-   Applies to: index.html
-   ============================================================ */
 
-
-/* ── 1. RESET & ROOT VARIABLES ─────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -29,7 +23,6 @@
 }
 
 
-/* ── 2. BASE BODY ───────────────────────────────────────────── */
 body {
   font-family: 'Inter', sans-serif;
   background: var(--page);
@@ -38,7 +31,7 @@ body {
 }
 
 
-/* ── 3. HEADER ──────────────────────────────────────────────── */
+
 header {
   background: var(--ink);
   padding: 20px 32px;
@@ -76,7 +69,6 @@ header p {
 }
 
 
-/* ── 4. LAYOUT CONTAINER ────────────────────────────────────── */
 .container {
   max-width: 880px;
   margin: 0 auto;
@@ -84,7 +76,6 @@ header p {
 }
 
 
-/* ── 5. CARDS ───────────────────────────────────────────────── */
 .card {
   background: var(--cream);
   border: 1px solid var(--rule);
@@ -112,7 +103,6 @@ header p {
 }
 
 
-/* ── 6. FORM INPUTS ─────────────────────────────────────────── */
 input[type="text"],
 input[type="number"] {
   width: 100%;
@@ -137,7 +127,7 @@ input[type="number"] {
 }
 
 
-/* ── 7. GRADE BADGES ────────────────────────────────────────── */
+
 .avg-cell {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 15px;
@@ -170,7 +160,6 @@ input[type="number"] {
 }
 
 
-/* ── 8. BUTTONS ─────────────────────────────────────────────── */
 .btn {
   padding: 9px 18px;
   border-radius: 7px;
@@ -196,7 +185,6 @@ input[type="number"] {
 .btn-sm { padding: 5px 10px; font-size: 12px; }
 
 
-/* ── 9. TOOLBAR ─────────────────────────────────────────────── */
 .toolbar {
   display: flex;
   gap: 10px;
@@ -208,7 +196,6 @@ input[type="number"] {
 .toolbar-right { margin-left: auto; }
 
 
-/* ── 10. SUBJECT TAGS ───────────────────────────────────────── */
 .subjects-row {
   display: flex;
   gap: 8px;
@@ -247,7 +234,6 @@ input[type="number"] {
 .add-subject-row input { max-width: 200px; }
 
 
-/* ── 11. SUMMARY STAT BOXES ─────────────────────────────────── */
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -280,7 +266,6 @@ input[type="number"] {
 }
 
 
-/* ── 12. EMPTY STATE ────────────────────────────────────────── */
 .empty-state {
   text-align: center;
   padding: 40px 20px;
@@ -291,7 +276,6 @@ input[type="number"] {
 .empty-state .icon { font-size: 36px; margin-bottom: 10px; }
 
 
-/* ── 13. SCROLL WRAPPER ─────────────────────────────────────── */
 .scroll-x { overflow-x: auto; }
 
 
