@@ -1,15 +1,4 @@
-/* ============================================================
-   app.js — GradeBook logic
-   Applies to: index.html
-   Requires:   style.css (for grade badge class names)
-   ============================================================ */
 
-
-/* ── 1. GRADING SCALE ───────────────────────────────────────── */
-/*
-   Each entry says: if the average is >= min, award this grade.
-   The array is checked top to bottom, so the first match wins.
-*/
 const GRADE_SCALE = [
   { min: 80, grade: 'A', label: 'Excellent'  },
   { min: 65, grade: 'B', label: 'Good'       },
@@ -19,13 +8,7 @@ const GRADE_SCALE = [
 ];
 
 
-/* ── 2. APP DATA ────────────────────────────────────────────── */
-/*
-   subjects — array of subject name strings.
-   pupils   — array of pupil objects: { id, name, scores[] }
-              scores[] has one entry per subject, in the same order.
-   nextId   — auto-incrementing ID for each new pupil.
-*/
+
 let subjects = ['Math', 'English', 'Science', 'Social Studies'];
 
 let pupils = [
@@ -37,35 +20,18 @@ let pupils = [
 let nextId = 4;
 
 
-/* ── 3. PURE HELPER FUNCTIONS ───────────────────────────────── */
-
-/**
- * getGrade(avg)
- * Given a numeric average, returns the matching grade object.
- * Example: getGrade(82) → { min:80, grade:'A', label:'Excellent' }
- */
+/
 function getGrade(avg) {
   return GRADE_SCALE.find(g => avg >= g.min) || GRADE_SCALE[GRADE_SCALE.length - 1];
 }
 
-/**
- * calcAvg(scores)
- * Returns the average of an array of scores, ignoring empty strings.
- * Returns null if there are no valid scores yet.
- * Example: calcAvg([80, '', 90]) → 85
- */
 function calcAvg(scores) {
   const valid = scores.filter(s => s !== '' && !isNaN(s));
   if (!valid.length) return null;
   return valid.reduce((a, b) => a + Number(b), 0) / valid.length;
 }
 
-/**
- * escHtml(str)
- * Escapes special HTML characters so user-typed names can't
- * accidentally break the page layout or inject HTML.
- * Example: escHtml('<b>hi</b>') → '&lt;b&gt;hi&lt;/b&gt;'
- */
+
 function escHtml(str) {
   return (str || '')
     .replace(/&/g, '&amp;')
@@ -75,13 +41,7 @@ function escHtml(str) {
 }
 
 
-/* ── 4. SUBJECT MANAGEMENT ──────────────────────────────────── */
 
-/**
- * renderSubjectTags()
- * Reads the subjects array and writes the coloured tag pills
- * into the #subjectTags div in index.html.
- */
 function renderSubjectTags() {
   const wrap = document.getElementById('subjectTags');
 
@@ -98,12 +58,7 @@ function renderSubjectTags() {
   `).join('');
 }
 
-/**
- * addSubject()
- * Reads the text input, adds the new subject to the subjects array,
- * and adds an empty score slot to every existing pupil.
- * Called when the user clicks "+ Add" or presses Enter.
- */
+
 function addSubject() {
   const inp = document.getElementById('newSubjectInput');
   const val = inp.value.trim();
@@ -123,11 +78,7 @@ function addSubject() {
   render(); // Rebuild the whole UI
 }
 
-/**
- * removeSubject(idx)
- * Removes the subject at position idx from subjects[],
- * and removes the matching score from every pupil.
- */
+
 function removeSubject(idx) {
   if (!confirm(`Remove subject "${subjects[idx]}"?`)) return;
 
@@ -138,13 +89,7 @@ function removeSubject(idx) {
 }
 
 
-/* ── 5. PUPIL MANAGEMENT ────────────────────────────────────── */
 
-/**
- * addPupil()
- * Adds a blank pupil row to the pupils array, then re-renders.
- * Automatically focuses the name input of the new row.
- */
 function addPupil() {
   pupils.push({
     id: nextId++,
@@ -161,42 +106,27 @@ function addPupil() {
   }, 50);
 }
 
-/**
- * removePupil(id)
- * Removes the pupil with the given id from the array and re-renders.
- */
+
 function removePupil(id) {
   pupils = pupils.filter(p => p.id !== id);
   render();
 }
 
-/**
- * clearAll()
- * Empties the entire pupils array after a confirmation prompt.
- */
+
 function clearAll() {
   if (!confirm('Clear all pupils?')) return;
   pupils = [];
   render();
 }
 
-/**
- * updateName(id, val)
- * Called every time the user types in a name input field.
- * Updates the matching pupil's name in the data array.
- */
+
 function updateName(id, val) {
   const p = pupils.find(p => p.id === id);
   if (p) p.name = val;
   updateSummary(); // Summary pupil count may change
 }
 
-/**
- * updateScore(id, subjectIndex, val)
- * Called every time a score input changes.
- * Clamps the value between 0 and 100, saves it,
- * then updates just that row (faster than full re-render).
- */
+
 function updateScore(id, idx, val) {
   const p = pupils.find(p => p.id === id);
   if (!p) return;
@@ -211,12 +141,7 @@ function updateScore(id, idx, val) {
 
 /* ── 6. RENDERING FUNCTIONS ─────────────────────────────────── */
 
-/**
- * renderRow(id)
- * Updates the average, grade badge, and remarks for one pupil row.
- * Called on every keystroke in a score field — much faster than
- * rebuilding the entire table.
- */
+
 function renderRow(id) {
   const p = pupils.find(p => p.id === id);
   if (!p) return;
@@ -245,11 +170,7 @@ function renderRow(id) {
   }
 }
 
-/**
- * render()
- * Full page rebuild. Called when the subjects or pupils arrays change.
- * Builds the subject tags AND the entire pupils table from scratch.
- */
+
 function render() {
   renderSubjectTags();
 
@@ -354,11 +275,7 @@ function render() {
   updateSummary();
 }
 
-/**
- * updateSummary()
- * Reads all current averages and writes statistics into the
- * #summaryGrid div. Hides the card if there are no pupils.
- */
+
 function updateSummary() {
   const card = document.getElementById('summaryCard');
   const grid = document.getElementById('summaryGrid');
@@ -413,13 +330,7 @@ function updateSummary() {
 }
 
 
-/* ── 7. EXPORT ──────────────────────────────────────────────── */
 
-/**
- * exportCSV()
- * Converts all pupil data into a CSV string and triggers
- * a file download in the browser. No server needed.
- */
 function exportCSV() {
   const header = ['Name', ...subjects, 'Average', 'Grade', 'Remarks'].join(',');
 
@@ -446,10 +357,5 @@ function exportCSV() {
 }
 
 
-/* ── 8. INITIALISE ──────────────────────────────────────────── */
-/*
-   Run render() once when the page loads.
-   Because this <script> tag is at the bottom of index.html,
-   the DOM is already fully built by the time this line runs.
-*/
+
 render();
