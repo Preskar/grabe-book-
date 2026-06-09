@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GradeBook – Pupil Marks Calculator</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <header>
+    <div class="logo">G</div>
+    <div>
+      <h1>GradeBook</h1>
+      <p>Pupil marks calculator &amp; grading system</p>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="container">
+
+    <!-- CARD 1: Subject Manager -->
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Subjects</div>
+      <div class="subjects-row" id="subjectTags"></div>
+      <div class="add-subject-row">
+        <input
+          type="text"
+          id="newSubjectInput"
+          placeholder="Add subject (e.g. Science)"
+          maxlength="20"
+          onkeydown="if(event.key==='Enter') addSubject()"
+        />
+        <button class="btn btn-primary btn-sm" onclick="addSubject()">+ Add</button>
+      </div>
+    </div>
+
+    <!-- CARD 2: Pupil Scores Table -->
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Pupil Scores</div>
+      <div class="toolbar">
+        <button class="btn btn-primary" onclick="addPupil()">+ Add Pupil</button>
+        <button class="btn btn-ghost"   onclick="clearAll()">Clear All</button>
+        <button class="btn btn-ghost toolbar-right" onclick="exportCSV()">⬇ Export CSV</button>
+      </div>
+      <div class="scroll-x">
+        <div id="tableWrap"></div>
+      </div>
+    </div>
+
+    <!-- CARD 3: Class Summary (hidden until scores exist) -->
+    <div class="card" id="summaryCard" style="display:none">
+      <div class="card-title"><span class="dot"></span>Class Summary</div>
+      <div class="summary-grid" id="summaryGrid"></div>
+    </div>
+
+  </div><!-- end .container -->
+
+  <!-- Our JavaScript (loaded last so the page is ready first) -->
+  <script src="app.js"></script>
+
+</body>
+</html>

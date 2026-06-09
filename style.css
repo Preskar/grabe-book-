@@ -1,0 +1,303 @@
+/* ============================================================
+   style.css — GradeBook visual styles
+   Applies to: index.html
+   ============================================================ */
+
+
+/* ── 1. RESET & ROOT VARIABLES ─────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ink:          #1a1a2e;
+  --ink-soft:     #4a4a6a;
+  --page:         #f7f6f2;
+  --cream:        #ffffff;
+  --rule:         #e2e0d8;
+  --accent:       #4f46e5;
+  --accent-soft:  #eef2ff;
+  --green:        #16a34a;
+  --green-soft:   #dcfce7;
+  --amber:        #d97706;
+  --amber-soft:   #fef3c7;
+  --red:          #dc2626;
+  --red-soft:     #fee2e2;
+  --radius:       10px;
+}
+
+
+/* ── 2. BASE BODY ───────────────────────────────────────────── */
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--page);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+
+/* ── 3. HEADER ──────────────────────────────────────────────── */
+header {
+  background: var(--ink);
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+header .logo {
+  width: 38px;
+  height: 38px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: #fff;
+  font-size: 18px;
+}
+
+header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+
+header p {
+  font-size: 13px;
+  color: #9998b8;
+  margin-top: 1px;
+}
+
+
+/* ── 4. LAYOUT CONTAINER ────────────────────────────────────── */
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+
+/* ── 5. CARDS ───────────────────────────────────────────────── */
+.card {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+
+/* ── 6. FORM INPUTS ─────────────────────────────────────────── */
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--page);
+  outline: none;
+  transition: border 0.15s;
+}
+
+input:focus {
+  border-color: var(--accent);
+  background: #fff;
+}
+
+input[type="number"] {
+  text-align: center;
+}
+
+
+/* ── 7. GRADE BADGES ────────────────────────────────────────── */
+.avg-cell {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.grade-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  min-width: 44px;
+}
+
+.grade-A { background: var(--green-soft); color: var(--green); }
+.grade-B { background: #dbeafe;           color: #1d4ed8; }
+.grade-C { background: var(--amber-soft); color: var(--amber); }
+.grade-D { background: #ffe4e6;           color: #be123c; }
+.grade-F { background: var(--red-soft);   color: var(--red); }
+
+.remarks-cell {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+
+/* ── 8. BUTTONS ─────────────────────────────────────────────── */
+.btn {
+  padding: 9px 18px;
+  border-radius: 7px;
+  border: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary              { background: var(--accent); color: #fff; }
+.btn-primary:hover        { opacity: 0.9; }
+
+.btn-ghost                { background: transparent; color: var(--ink-soft); border: 1px solid var(--rule); }
+.btn-ghost:hover          { background: var(--page); }
+
+.btn-danger               { background: var(--red-soft); color: var(--red); }
+.btn-danger:hover         { opacity: 0.85; }
+
+.btn-sm { padding: 5px 10px; font-size: 12px; }
+
+
+/* ── 9. TOOLBAR ─────────────────────────────────────────────── */
+.toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.toolbar-right { margin-left: auto; }
+
+
+/* ── 10. SUBJECT TAGS ───────────────────────────────────────── */
+.subjects-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.subject-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.subject-tag button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 0 1px 0;
+}
+
+.add-subject-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.add-subject-row input { max-width: 200px; }
+
+
+/* ── 11. SUMMARY STAT BOXES ─────────────────────────────────── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.stat-box {
+  background: var(--page);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: center;
+}
+
+.stat-box .val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.stat-box .lbl {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-soft);
+  margin-top: 5px;
+}
+
+
+/* ── 12. EMPTY STATE ────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.empty-state .icon { font-size: 36px; margin-bottom: 10px; }
+
+
+/* ── 13. SCROLL WRAPPER ─────────────────────────────────────── */
+.scroll-x { overflow-x: auto; }
+
+
+/* ── 14. MOBILE RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 600px) {
+  header      { padding: 14px 16px; }
+  .container  { padding: 16px 10px 40px; }
+  .card       { padding: 16px; }
+}
